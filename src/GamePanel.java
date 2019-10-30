@@ -1,22 +1,31 @@
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 import javax.swing.JPanel;
+import javax.swing.Timer;
 
-public class GamePanel extends JPanel {
+public class GamePanel extends JPanel implements ActionListener, KeyListener{
 	final int MENU = 0;
     final int GAME = 1;
     final int END = 2;
-    int currentState = END;
+    int currentState = MENU;
     Font titleFont;
     Font subtext1;
     Font subtext2;
+    Timer frameDraw;
+    Rocketship rocket = new Rocketship(250, 700, 50, 50);
 	
 	GamePanel(){
 		this.titleFont = new Font("Arial", Font.PLAIN, 48);
 		this.subtext1 = new Font("New Roman", Font.PLAIN, 24);
 		this.subtext2 = new Font("New Roman", Font.PLAIN, 24);
+		frameDraw = new Timer(1000/60,this);
+	    frameDraw.start();
 	}
 
 	@Override
@@ -57,6 +66,7 @@ public class GamePanel extends JPanel {
 	 public void drawGameState(Graphics g) {
 		 g.setColor(Color.BLACK);
 		 g.fillRect(0, 0, LeagueInvaders.WIDTH, LeagueInvaders.HEIGHT);
+		 rocket.draw(g);
 	 }
 	 public void drawEndState(Graphics g)  {
 		 g.setColor(Color.RED);
@@ -73,14 +83,64 @@ public class GamePanel extends JPanel {
 		 g.setColor(Color.GREEN);
 		 g.drawString("Press ENTER to restart", 100, 300);
 		 
-		 g.setFont(subtext1);
-		 g.setColor(Color.GREEN);
-		 g.drawString("ngrsjgmoijmrd,odcj", 100, 500);
-		 
-		 g.setFont(subtext1);
-		 g.setColor(Color.GREEN);
-		 g.drawString("ekoawppcvaskdgzs;k", 100, 500);
-
+		
 	 }
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		if(currentState == MENU){
+		    updateMenuState();
+		}else if(currentState == GAME){
+		    updateGameState();
+		}else if(currentState == END){
+		    updateEndState();
+		}
+		repaint();
+	}
+
+	@Override
+	public void keyTyped(KeyEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void keyPressed(KeyEvent e) {
+		// TODO Auto-generated method stub
+		System.out.println("yup");
+		if (e.getKeyCode()==KeyEvent.VK_ENTER) {
+			System.out.println("yup");
+		    if (currentState == END) {
+		    	System.out.println("nope");
+		        currentState = MENU;
+		    } else {
+		        currentState++;
+		        System.out.println("yup");
+		    }
+		}   
+		
+		if (currentState == GAME) {
+			if (e.getKeyCode()==KeyEvent.VK_UP) {
+				System.out.println("UP");
+			}
+			if (e.getKeyCode()==KeyEvent.VK_DOWN) {
+			    System.out.println("DOWN");
+			}
+			if (e.getKeyCode()==KeyEvent.VK_RIGHT) {
+			    System.out.println("RIGHT");
+			}
+			if (e.getKeyCode()==KeyEvent.VK_LEFT) {
+			    System.out.println("LEFT");
+			}
+
+		}
+	}
+
+	@Override
+	public void keyReleased(KeyEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
 
 }

@@ -24,6 +24,6 @@ public class LeagueInvaders {
 		background.setSize(new Dimension(WIDTH, HEIGHT));
 		background.setVisible(true);
 		background.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
+		background.addKeyListener(gp);
 	}
 }
