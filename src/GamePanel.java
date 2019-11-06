@@ -19,7 +19,9 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener{
     Font subtext2;
     Timer frameDraw;
     Rocketship rocket = new Rocketship(250, 700, 50, 50);
+	boolean direction_pressed = false;
 	
+    
 	GamePanel(){
 		this.titleFont = new Font("Arial", Font.PLAIN, 48);
 		this.subtext1 = new Font("New Roman", Font.PLAIN, 24);
@@ -108,30 +110,35 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener{
 	@Override
 	public void keyPressed(KeyEvent e) {
 		// TODO Auto-generated method stub
-		System.out.println("yup");
-		if (e.getKeyCode()==KeyEvent.VK_ENTER) {
-			System.out.println("yup");
+		int key = e.getKeyCode();
+		if (key==KeyEvent.VK_ENTER) {
 		    if (currentState == END) {
-		    	System.out.println("nope");
 		        currentState = MENU;
 		    } else {
 		        currentState++;
-		        System.out.println("yup");
 		    }
 		}   
 		
 		if (currentState == GAME) {
-			if (e.getKeyCode()==KeyEvent.VK_UP) {
-				System.out.println("UP");
+			if (key==KeyEvent.VK_UP) {
+				if(rocket.y>0) {
+					rocket.up();
+					}
 			}
-			if (e.getKeyCode()==KeyEvent.VK_DOWN) {
-			    System.out.println("DOWN");
+			else if (key==KeyEvent.VK_DOWN) {
+			    if(rocket.y<730) {
+					rocket.down();
+					}
 			}
-			if (e.getKeyCode()==KeyEvent.VK_RIGHT) {
-			    System.out.println("RIGHT");
+			else if (key==KeyEvent.VK_RIGHT) {
+			    if(rocket.x<450) {
+					rocket.right();
+					}
 			}
-			if (e.getKeyCode()==KeyEvent.VK_LEFT) {
-			    System.out.println("LEFT");
+			else if (key==KeyEvent.VK_LEFT) {
+			    if(rocket.x>0) {
+					rocket.left();
+					}
 			}
 
 		}
