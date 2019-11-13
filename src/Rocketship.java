@@ -2,10 +2,11 @@ import java.awt.Color;
 import java.awt.Graphics;
 
 public class Rocketship extends GameObject {
-
+public int xSpeed = 0;
+public int ySpeed = 0;
 	Rocketship(int x, int y, int width, int height) {
 		super(x, y, width, height);
-		speed = 15;
+		speed = 10;
 		
 		// TODO Auto-generated constructor stub
 	}
@@ -18,16 +19,30 @@ public class Rocketship extends GameObject {
 	}
 
 	 public void up() {
-	        y-=speed;
+	        ySpeed=-speed;
 	    }
 	 public void down() {
-	        y+=speed;
+	        ySpeed=speed;
 	    }
 	 public void right() {
-	        x+=speed;
+	        xSpeed=speed;
 	    }
 	 public void left() {
-	        x-=speed;
+	        xSpeed=-speed;
 	    }
-
+	 public void update() {
+		 if(x>=5&&xSpeed<=0) {
+		 x+=xSpeed;
+	 }
+	 	if(x<=445&&xSpeed>=0) {
+	 		x+=xSpeed;
+	 	}
+	 	if(y>=5&&ySpeed<=0) {
+	 		y+=ySpeed;
+	 	}
+	 	if(y<=725&&ySpeed>=0) {
+	 		y+=ySpeed;
+	 	}
+	 }
+	 
 }

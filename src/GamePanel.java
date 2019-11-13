@@ -45,7 +45,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener{
 	 }
 	 
 	 public void updateGameState() {  
-		 
+		 rocket.update();
 	 }
 	 public void updateEndState()  {  
 		 
@@ -147,7 +147,10 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener{
 	@Override
 	public void keyReleased(KeyEvent e) {
 		// TODO Auto-generated method stub
-		
+		int key = e.getKeyCode();
+		if(key==KeyEvent.VK_UP||key==KeyEvent.VK_DOWN||key==KeyEvent.VK_RIGHT||key==KeyEvent.VK_LEFT)
+		rocket.xSpeed=0;
+		rocket.ySpeed=0;
 	}
 
 }
