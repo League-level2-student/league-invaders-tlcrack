@@ -7,6 +7,10 @@ public class ObjectManager {
 	ArrayList<Projectile> projectiles = new ArrayList<Projectile>();
 	ArrayList<Alien> aliens = new ArrayList<Alien>();
 	Random random = new Random();
+	
+	ObjectManager(Rocketship r){
+		this.r = r;
+	}
 
 	void addProjectile(Projectile p){
 		projectiles.add(p);
@@ -47,11 +51,17 @@ public class ObjectManager {
 	}
 	
 	void purgeObjects(){
-		
+		for(int i = 0; i < aliens.size(); i++) {
+			if(aliens.get(i).isActive==false) {
+				aliens.remove(i);
+			}
+		}
+		for(int i = 0; i < projectiles.size(); i++) {
+			if(projectiles.get(i).isActive==false) {
+				projectiles.remove(i);
+			}
+		}
 	}
-	
-	
-	
 	
 	
 	
