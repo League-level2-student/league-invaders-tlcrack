@@ -23,15 +23,17 @@ public class Alien extends GameObject {
 	
 	public void update(){
 		y+=speed;
+		super.update();
 	}
 	
 	void draw(Graphics g) {
 		if (gotImage) {
-			g.drawImage(image, x, y, width, height, null);
+			g.drawImage(image, x, y, image.getWidth(), image.getHeight(), null);
 		} else {
 			g.setColor(Color.BLUE);
 			g.fillRect(x, y, width, height);
 		}
+		super.draw(g);
 	}
 	
 	

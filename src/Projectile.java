@@ -23,6 +23,7 @@ public class Projectile extends GameObject {
 	
 	public void update(){
 		y-=speed;
+		super.update();
 	}
 	
 	void draw(Graphics g) {
@@ -32,6 +33,7 @@ public class Projectile extends GameObject {
 			g.setColor(Color.BLUE);
 			g.fillRect(x, y, width, height);
 		}
+		super.draw(g);
 	}
 
 	void loadImage(String imageFile) {

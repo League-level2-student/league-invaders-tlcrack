@@ -20,7 +20,7 @@ public class ObjectManager implements ActionListener {
 	}
 	
 	void addAlien(){
-		aliens.add(new Alien(random.nextInt(LeagueInvaders.WIDTH),0,110,110));
+		aliens.add(new Alien(random.nextInt(LeagueInvaders.WIDTH),0,175,261));
 		
 	}
 	
@@ -38,6 +38,9 @@ public class ObjectManager implements ActionListener {
 				projectiles.get(i).isActive = false;
 			}
 		}
+		
+		checkCollision();
+		purgeObjects();
 	}
 	
 	void draw(Graphics g){
@@ -61,6 +64,23 @@ public class ObjectManager implements ActionListener {
 		for(int i = 0; i < projectiles.size(); i++) {
 			if(projectiles.get(i).isActive==false) {
 				projectiles.remove(i);
+			}
+		}
+	}
+	
+	void checkCollision() {
+		for(int i = 0; i < aliens.size(); i++) {
+			if(r.collisionBox.intersects(aliens.get(i).collisionBox)) {
+				aliens.get(i).isActive = false;
+				r.isActive = false;
+			}
+			else {
+				for(int a = 0; a < projectiles.size(); a++) {
+					if(projectiles.get(a).collisionBox.intersects(aliens.get(i).collisionBox)) {
+						aliens.get(i).isActive = false;
+						projectiles.get(a).isActive = false;
+					}
+				}
 			}
 		}
 	}

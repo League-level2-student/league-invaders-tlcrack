@@ -34,6 +34,7 @@ public static boolean gotImage = false;
 			g.setColor(Color.BLUE);
 			g.fillRect(x, y, width, height);
 		}
+		super.draw(g);
 		
 	}
 
