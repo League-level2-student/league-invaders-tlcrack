@@ -63,6 +63,12 @@ public static boolean gotImage = false;
 	 	if(y<=725&&ySpeed>=0) {
 	 		y+=ySpeed;
 	 	}
+	 	if(y>LeagueInvaders.HEIGHT-height) {
+	 		y=LeagueInvaders.HEIGHT-height;
+	 	}
+	 	if(x>LeagueInvaders.WIDTH-width) {
+	 		x=LeagueInvaders.WIDTH-width;
+	 	}
 	 }
 	 
 	 void loadImage(String imageFile) {
