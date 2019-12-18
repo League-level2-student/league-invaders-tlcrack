@@ -22,6 +22,13 @@ public class GameObject {
 	}
 	void draw(Graphics g) {
 		g.setColor(Color.red);
-		g.drawRect(x, y, width, height);
+		g.drawRect(x, y, this.width, this.height);
 	}
+	public void setWidth(int width) {
+		this.width = width;
+	}
+	public void setHeight(int height) {
+		this.height = height;
+	}
+	
 }

@@ -18,7 +18,8 @@ public class Projectile extends GameObject {
 		if (needImage) {
 		    loadImage ("projectile.png");
 		}
-		
+		setHeight(image.getHeight());
+		setWidth(image.getWidth());
 	}
 	
 	public void update(){
@@ -28,7 +29,7 @@ public class Projectile extends GameObject {
 	
 	void draw(Graphics g) {
 		if (gotImage) {
-			g.drawImage(image, x, y, width, height, null);
+			g.drawImage(image, x, y, image.getWidth(), image.getHeight(), null);
 		} else {
 			g.setColor(Color.BLUE);
 			g.fillRect(x, y, width, height);

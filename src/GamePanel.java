@@ -24,7 +24,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener{
     Rocketship rocket = new Rocketship(250, 700, 55, 66);
 	boolean direction_pressed = false;
 	ObjectManager manager = new ObjectManager(rocket);
-	public static BufferedImage image;
+	public static BufferedImage backgroundImage;
 	public static boolean needImage = true;
 	public static boolean gotImage = false;	
 	
@@ -85,13 +85,13 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener{
 	 }
 	 public void drawGameState(Graphics g) {
 		 if (gotImage) {
-				g.drawImage(image, 0, 0, LeagueInvaders.WIDTH, LeagueInvaders.HEIGHT, null);
+				g.drawImage(backgroundImage, 0, 0, LeagueInvaders.WIDTH, LeagueInvaders.HEIGHT, null);
 			} else {
 		 g.setColor(Color.BLACK);
 		 g.fillRect(0, 0, LeagueInvaders.WIDTH, LeagueInvaders.HEIGHT);
 			}
 		 manager.draw(g);
-		 g.drawString("Score:", 20, 20);
+		 g.drawString("Score:" + manager.getScore(), 20, 20);
 	 }
 	 public void drawEndState(Graphics g)  {
 		 g.setColor(Color.RED);
@@ -114,7 +114,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener{
 	 void loadImage(String imageFile) {
 		    if (needImage) {
 		        try {
-		            image = ImageIO.read(this.getClass().getResourceAsStream(imageFile));
+		            backgroundImage = ImageIO.read(this.getClass().getResourceAsStream(imageFile));
 			    gotImage = true;
 		        } catch (Exception e) {
 		            
@@ -162,6 +162,8 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener{
 		        }
 		        else if(currentState == END) {
 		        	alienSpawn.stop();
+		        	rocket = new Rocketship(250, 700, 55, 66);
+		        	manager = new ObjectManager(rocket);
 		        }
 		    }
 		    
