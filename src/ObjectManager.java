@@ -19,7 +19,8 @@ public class ObjectManager implements ActionListener {
 		projectiles.add(p);
 
 	}
-
+	
+	
 	void addAlien() {
 		aliens.add(new Alien(random.nextInt(LeagueInvaders.WIDTH - 50), 0, 50, 74));
 
@@ -30,6 +31,7 @@ public class ObjectManager implements ActionListener {
 			aliens.get(i).update();
 			if (aliens.get(i).y > 800) {
 				aliens.get(i).isActive = false;
+				r.isActive=false;
 			}
 		}
 

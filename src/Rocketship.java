@@ -38,6 +38,8 @@ public static boolean gotImage = false;
 		
 	}
 
+
+	
 	 public void up() {
 	        ySpeed=-speed;
 	    }
@@ -50,6 +52,7 @@ public static boolean gotImage = false;
 	 public void left() {
 	        xSpeed=-speed;
 	    }
+	 
 	 public void update() {
 		 if(x>=5&&xSpeed<=0) {
 		 x+=xSpeed;
@@ -69,6 +72,7 @@ public static boolean gotImage = false;
 	 	if(x>LeagueInvaders.WIDTH-width) {
 	 		x=LeagueInvaders.WIDTH-width;
 	 	}
+	 	super.update();
 	 }
 	 
 	 void loadImage(String imageFile) {
