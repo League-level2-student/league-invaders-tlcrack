@@ -91,6 +91,7 @@ public class ObjectManager implements ActionListener {
 	int getScore() {
 		return score;
 	}
+	
 
 	@Override
 	public void actionPerformed(ActionEvent e) {

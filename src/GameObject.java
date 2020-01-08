@@ -22,7 +22,6 @@ public class GameObject {
 	}
 	void draw(Graphics g) {
 		g.setColor(Color.red);
-		g.drawRect(x, y, this.width, this.height);
 	}
 	public void setWidth(int width) {
 		this.width = width;

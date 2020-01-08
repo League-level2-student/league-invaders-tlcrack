@@ -15,6 +15,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	final int MENU = 0;
 	final int GAME = 1;
 	final int END = 2;
+	final int NUMBER_OF_STATES = 3;
 	int currentState = MENU;
 	Font titleFont;
 	Font subtext1;
@@ -53,14 +54,13 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	}
 
 	public void updateMenuState() {
-
+		manager = new ObjectManager(rocket);
 	}
 
 	public void updateGameState() {
 		if (rocket.isActive == false) {
 			currentState = END;
 			rocket = new Rocketship(250, 700, 55, 66);
-			manager = new ObjectManager(rocket);
 		}
 
 		rocket.update();
@@ -107,7 +107,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 
 		g.setFont(subtext1);
 		g.setColor(Color.GREEN);
-		g.drawString("You killed " + " enemies", 100, 300);
+		g.drawString("You killed " + manager.score + " enemies", 100, 300);
 
 		g.setFont(subtext2);
 		g.setColor(Color.GREEN);
@@ -159,17 +159,16 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		int key = e.getKeyCode();
 		if (key == KeyEvent.VK_ENTER) {
 			currentState++;
-			System.out.println("checkiroodles");
-
+			currentState = (currentState%NUMBER_OF_STATES);
 			if (currentState == GAME) {
 				startGame();
 			} else if (currentState == END) {
-				System.out.println("and check");
-				currentState = MENU;
 				alienSpawn.stop();
 				rocket = new Rocketship(250, 700, 55, 66);
-				manager = new ObjectManager(rocket);
 
+			}
+			else if (currentState == MENU) {
+				updateMenuState();
 			}
 
 		}
